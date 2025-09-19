@@ -5,8 +5,9 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "allowJs": true // Permite arquivos JS
   },
-  "include": ["src"],
+  "include": ["src/**/*.js"], // Apenas arquivos JS na pasta src
   "exclude": ["dist", "node_modules"]
 }

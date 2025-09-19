@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import fs from 'fs';
+import { fetchPrismicDocuments } from './api';
 
 const app = express();
 const port = 3000;
@@ -20,6 +21,17 @@ app.get('/', (_req, res) => {
   }
 });
 
+app.get('/api/prismic', async (req, res) => {
+  try {
+    const docs = await fetchPrismicDocuments();
+    res.json(docs);
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao buscar dados do Prismic.' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });
+
+
