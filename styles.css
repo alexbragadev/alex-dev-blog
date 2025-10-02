@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 :root {
   --primary: #8c52ff;
   --white: #fff;
@@ -7,49 +6,113 @@
   --grey1: #dad8d8;
   --grey2: #828282;
 }
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+body {
+  font-family: "Roboto", sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 400;
+}
+
+.btn-primary {
+  background-color: var(--primary) !important;
+  border: 1px solid var(--primary) !important;
+}
 
 .header {
-    width: 80%;               
-    margin: 0 auto;    
+  width: 80%;
+  margin: 0 auto;
 }
 
 .header-shadow {
-    width: 100%;
-    box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+  width: 100%;
+  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
 .navigation {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .logo {
-    width: 12rem;
+  width: 12rem;
 }
 
 .nav-link {
-    color: var(--black1) !important; 
-    transition: color 0.3s ease;
-    font-size: 1.2rem !important; 
+  color: var(--black1) !important;
+  transition: color 0.3s ease;
+  font-size: 1.2rem !important;
 }
 
 .nav-link:hover {
-    color: var(--black2) !important; 
+  color: var(--black2) !important;
 }
 
 .hamburger {
-    display: none;
+  display: none;
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 250px; /* ou o tamanho que você quiser */
+  overflow: hidden;
+}
+
+.banner img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* escurecer a imagem */
+  filter: brightness(30%);
+  z-index: 1;
+}
+
+.banner .banner-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.banner h1 {
+  margin: 0;
+  font-size: 2.5em;
+}
+
+.banner p {
+  margin: 10px 0 0;
+  font-size: 1.2em;
+}
+
+.card {
+  margin-top: 3rem;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+main {
+  width: 60%;
+  margin: 0 auto;
 }
 
 @media (max-width: 991.98px) {
-    .hamburger {
-        display: block;
-        font-size: 2.5rem;
-    }
+  .hamburger {
+    display: block;
+    font-size: 2.5rem;
+  }
 
-    .navigation .nav {
-        display: none;
-    }
+  .navigation .nav {
+    display: none;
+  }
 }
