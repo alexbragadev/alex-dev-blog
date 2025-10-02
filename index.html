@@ -1,17 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bootstrap com Express</title>
+  <title>AlexDev Blog</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
 </head>
-<body class="p-4">
-  <div class="container text-center">
-    <h1 class="text-primary">Olá, Bootstrap 5.3.8!</h1>
-    <button class="btn btn-success mt-3">Clique aqui</button>
+
+<body class="pt-4">
+
+  <div class="header-shadow pb-4">
+    <header class="header" id="header">
+      <nav class="navigation">
+        <a href="/#/"><img class="logo" src="./public/images/fromcode-logo.png" alt=""></a>
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Posts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <i class="bi bi-list"></i>
+        </div>
+      </nav>
+    </header>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <main></main>
+        <footer id="footer" class="footer"></footer>
+      </div>
+    </div>
   </div>
 
   <script src="public/js/bundle.js"></script>
 </body>
+
 </html>

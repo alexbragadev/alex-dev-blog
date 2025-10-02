@@ -8,6 +8,11 @@ module.exports = {
     path: path.resolve(__dirname, 'public/js'), // ← gera bundle aqui
     publicPath: '/js/',
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, ".", "index.html"),
+    }),
+  ],
   module: {
     rules: [
       {

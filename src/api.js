@@ -16,6 +16,6 @@ export const client = prismic.createClient(endpoint, {
 
 export async function fetchPrismicDocuments() {
   // Exemplo: busca todos os documentos do tipo 'post'
-  const documents = await client.getAllByType('vehicle');
+  const documents = await client.getAllByType('post');
   return documents;
 }
