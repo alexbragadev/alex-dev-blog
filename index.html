@@ -38,13 +38,71 @@
   <div class="banner">
     <img src="./public/images/banner-img.png" alt="Banner tecnologia">
     <div class="banner-content">
-      <h1>From the code to you.</h1>
+      <h1 id="typing"></h1>
       <p>Learn about programming and related topics with our content and have fun!</p>
+      <script>
+        const text = "From the code to you.";
+        const h1 = document.getElementById("typing");
+        let idx = 0;
+
+        function type() {
+          if (idx <= text.length) {
+        h1.textContent = text.slice(0, idx);
+        idx++;
+        setTimeout(type, 80);
+          }
+        }
+        window.addEventListener("DOMContentLoaded", type);
+      </script>
     </div>
   </div>
   <div class="container-fluid">
     <div class="row">
       <div class="col">
+          <script type="module">
+          import * as THREE from '../../node_modules/three/build/three.module.js';
+
+          function revealMainWithThreeJS() {
+            const main = document.querySelector('main');
+            main.style.opacity = 0;
+
+            // Create Three.js scene
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+            camera.position.z = 2;
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer.setSize(main.offsetWidth, main.offsetHeight);
+            renderer.domElement.style.position = 'absolute';
+            renderer.domElement.style.top = '0';
+            renderer.domElement.style.left = '0';
+            main.appendChild(renderer.domElement);
+
+            // Simple animation: fade in main while rendering a cube
+            const geometry = new THREE.BoxGeometry();
+            const material = new THREE.MeshBasicMaterial({ color: 0x007bff });
+            const cube = new THREE.Mesh(geometry, material);
+            scene.add(cube);
+
+            let opacity = 0;
+            function animate() {
+              requestAnimationFrame(animate);
+              cube.rotation.x += 0.01;
+              cube.rotation.y += 0.01;
+              renderer.render(scene, camera);
+
+              if (opacity < 1) {
+                opacity += 0.02;
+                main.style.opacity = opacity;
+              } else {
+                renderer.domElement.remove();
+              }
+            }
+            animate();
+          }
+
+          window.addEventListener('DOMContentLoaded', revealMainWithThreeJS);
+          </script>
         <main>
           <div class="card" style="width: 18rem;">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6WW8ljQMeBhekcnCdbmW6JK4XBgxbl3yu1A&s" class="card-img-top" alt="...">
