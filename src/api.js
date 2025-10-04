@@ -1,5 +1,5 @@
-import * as prismic from '@prismicio/client';
-import dotenv from 'dotenv';
+const prismic = require('@prismicio/client');
+const dotenv = require('dotenv');
 
 dotenv.config();
 
@@ -10,12 +10,14 @@ if (!endpoint) {
   throw new Error('PRISMIC_API_URL is not defined in environment variables.');
 }
 
-export const client = prismic.createClient(endpoint, {
+const client = prismic.createClient(endpoint, {
   accessToken,
 });
 
-export async function fetchPrismicDocuments() {
+module.exports.client = client;
+
+module.exports.fetchPrismicDocuments = async function () {
   // Exemplo: busca todos os documentos do tipo 'post'
   const documents = await client.getAllByType('post');
   return documents;
-}
+};

@@ -40,78 +40,51 @@
     <div class="banner-content">
       <h1 id="typing"></h1>
       <p>Learn about programming and related topics with our content and have fun!</p>
-      <script>
-        const text = "From the code to you.";
-        const h1 = document.getElementById("typing");
-        let idx = 0;
-
-        function type() {
-          if (idx <= text.length) {
-        h1.textContent = text.slice(0, idx);
-        idx++;
-        setTimeout(type, 80);
-          }
-        }
-        window.addEventListener("DOMContentLoaded", type);
-      </script>
     </div>
   </div>
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-          <script type="module">
-          import * as THREE from '../../node_modules/three/build/three.module.js';
+        <main>
+          <div id="cards-container" class="d-flex justify-content-around"></div>
+          <script>
+            async function fetchPrismicData() {
+              try {
+                const response = await fetch('/api/prismic');
+                const data = await response.json();
 
-          function revealMainWithThreeJS() {
-            const main = document.querySelector('main');
-            main.style.opacity = 0;
+                const container = document.getElementById('cards-container');
 
-            // Create Three.js scene
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-            camera.position.z = 2;
+                data.forEach(item => {
+                  // Substitua os campos abaixo pelos nomes reais do seu JSON
+                  const title = item.data.title[0].text || 'Título padrão';
+                  const description = item.data.description[0].text || 'Sem descrição';
+                  const imageUrl = item.data.image_title[0].text || 'https://via.placeholder.com/286x180';
+                  const link = item.link || '#';
 
-            const renderer = new THREE.WebGLRenderer({ alpha: true });
-            renderer.setSize(main.offsetWidth, main.offsetHeight);
-            renderer.domElement.style.position = 'absolute';
-            renderer.domElement.style.top = '0';
-            renderer.domElement.style.left = '0';
-            main.appendChild(renderer.domElement);
+                  const card = document.createElement('div');
+                  card.className = 'card';
+                  card.style.width = '23rem';
 
-            // Simple animation: fade in main while rendering a cube
-            const geometry = new THREE.BoxGeometry();
-            const material = new THREE.MeshBasicMaterial({ color: 0x007bff });
-            const cube = new THREE.Mesh(geometry, material);
-            scene.add(cube);
+                  card.innerHTML = `
+                    <img src="${imageUrl}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">${title}</h5>
+                      <p class="card-text">${description}</p>
+                      <a href="${link}" class="btn btn-primary" target="_blank">Read More</a>
+                    </div>
+                  `;
 
-            let opacity = 0;
-            function animate() {
-              requestAnimationFrame(animate);
-              cube.rotation.x += 0.01;
-              cube.rotation.y += 0.01;
-              renderer.render(scene, camera);
+                  container.appendChild(card);
+                });
 
-              if (opacity < 1) {
-                opacity += 0.02;
-                main.style.opacity = opacity;
-              } else {
-                renderer.domElement.remove();
+              } catch (err) {
+                console.error('Erro ao carregar dados do Prismic:', err);
               }
             }
-            animate();
-          }
 
-          window.addEventListener('DOMContentLoaded', revealMainWithThreeJS);
+            fetchPrismicData();
           </script>
-        <main>
-          <div class="card" style="width: 18rem;">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6WW8ljQMeBhekcnCdbmW6JK4XBgxbl3yu1A&s" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Webpack: what is it and how does it work?</h5>
-              <p class="card-text">A JavaScript build tool whose main purpose is to group (or "package") all of your project's files into one or more bundles.</p>
-              <a href="#" class="btn btn-primary">Read More</a>
-            </div>
-          </div>
         </main>
         <footer id="footer" class="footer"></footer>
       </div>

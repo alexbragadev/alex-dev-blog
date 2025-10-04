@@ -1,7 +1,7 @@
-import express from 'express';
-import path from 'path';
-import fs from 'fs';
-import { fetchPrismicDocuments } from './api';
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+const { fetchPrismicDocuments } = require('./api');
 
 const app = express();
 const port = 3000;
