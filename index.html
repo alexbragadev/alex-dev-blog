@@ -46,45 +46,7 @@
     <div class="row">
       <div class="col">
         <main>
-          <div id="cards-container" class="d-flex justify-content-around"></div>
-          <script>
-            async function fetchPrismicData() {
-              try {
-                const response = await fetch('/api/prismic');
-                const data = await response.json();
-
-                const container = document.getElementById('cards-container');
-
-                data.forEach(item => {
-                  // Substitua os campos abaixo pelos nomes reais do seu JSON
-                  const title = item.data.title[0].text || 'Título padrão';
-                  const description = item.data.description[0].text || 'Sem descrição';
-                  const imageUrl = item.data.image_title[0].text || 'https://via.placeholder.com/286x180';
-                  const link = item.link || '#';
-
-                  const card = document.createElement('div');
-                  card.className = 'card';
-                  card.style.width = '23rem';
-
-                  card.innerHTML = `
-                    <img src="${imageUrl}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">${title}</h5>
-                      <p class="card-text">${description}</p>
-                      <a href="${link}" class="btn btn-primary" target="_blank">Read More</a>
-                    </div>
-                  `;
-
-                  container.appendChild(card);
-                });
-
-              } catch (err) {
-                console.error('Erro ao carregar dados do Prismic:', err);
-              }
-            }
-
-            fetchPrismicData();
-          </script>
+        <div id="cards-container" class="d-flex flex-wrap justify-content-around"></div>
         </main>
         <footer id="footer" class="footer"></footer>
       </div>

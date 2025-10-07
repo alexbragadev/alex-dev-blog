@@ -2,8 +2,7 @@ import * as THREE from "three";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-console.log("Bootstrap carregado via Webpackkkkkk 7!");
-
+// digitação da frase "From the code to you."
 const text = "From the code to you.";
 const h1 = document.getElementById("typing");
 let idx = 0;
@@ -17,6 +16,7 @@ function type() {
 }
 window.addEventListener("DOMContentLoaded", type);
 
+// Animação com Three.js para revelar os blogs na página principal
 function revealMainWithThreeJS() {
   const main = document.querySelector("main");
   main.style.opacity = 0;
@@ -57,3 +57,44 @@ function revealMainWithThreeJS() {
 }
 
 window.addEventListener("DOMContentLoaded", revealMainWithThreeJS);
+
+// Fetch dados do Prismic e popular os cards
+async function fetchPrismicData() {
+  try {
+    const response = await fetch("/api/prismic");
+    const data = await response.json();
+
+    const container = document.getElementById("cards-container");
+
+    data.forEach((item) => {
+      // Substitua os campos abaixo pelos nomes reais do seu JSON
+      const title = item.data.title[0].text || "Título padrão";
+      const description = item.data.description[0].text || "Sem descrição";
+      const imageUrl =
+        item.data.image_title[0].text || "https://via.placeholder.com/286x180";
+      const link = item.link || "#";
+
+      const card = document.createElement("div");
+      card.className = "card";
+      card.style.width = "30%";
+
+      card.innerHTML = `
+                    <div class="card-img-wrapper">
+                      <img src="${imageUrl}" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">${title}</h5>
+                      <hr>
+                      <p class="card-text">${description}</p>
+                      <a href="${link}" class="btn btn-primary" target="_blank">Read More</a>
+                    </div>
+                  `;
+
+      container.appendChild(card);
+    });
+  } catch (err) {
+    console.error("Erro ao carregar dados do Prismic:", err);
+  }
+}
+
+fetchPrismicData();
