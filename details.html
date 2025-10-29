@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlexDev Blog</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+
+<body class="pt-4">
+
+  <div class="header-shadow pb-4">
+    <header class="header" id="header">
+      <nav class="navigation">
+        <a href="/#/"><img class="logo" src="./public/images/fromcode-logo.png" alt=""></a>
+        <ul class="nav justify-content-center">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Posts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Courses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <i class="bi bi-list"></i>
+        </div>
+      </nav>
+    </header>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+          <div id="post-detail">
+            <h2 class="title-detail">Carregando...</h2>
+            <p class="p-details"></p>
+            <div id="section"></div>
+            <h4 class="resumo-title"></h4>
+            <p class="resumo-details"></p>
+          </div>
+        <footer id="footer" class="footer"></footer>
+      </div>
+    </div>
+  </div>
+  <script src="public/js/bundle.js"></script>
+</body>
+
+</html>

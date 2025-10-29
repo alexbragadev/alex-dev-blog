@@ -22,9 +22,16 @@ app.get('/', (_req, res) => {
 });
 
 app.get('/api/prismic', async (req, res) => {
+  const uid = req.query.uid;
   try {
-    const docs = await fetchPrismicDocuments();
-    res.json(docs);
+    if (uid) {
+      // Buscar apenas um documento específico
+      const doc = await fetchPrismicDocuments(uid); 
+      res.json(doc);
+    } else {
+      const docs = await fetchPrismicDocuments();
+      res.json(docs);
+    }
   } catch (error) {
     res.status(500).json({ error: 'Erro ao buscar dados do Prismic.' });
   }

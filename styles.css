@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Playwrite+DE+SAS:wght@100..400&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
   --primary: #8c52ff;
+  --secondary: #6238b6;
   --white: #fff;
   --black1: #4d4d4d;
   --black2: #000;
@@ -17,9 +18,14 @@ body {
   font-weight: 400;
 }
 
-.btn-primary {
-  background-color: var(--primary) !important;
-  border: 1px solid var(--primary) !important;
+.card-body .btn-primary {
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.card-body .btn-primary:hover, .btn-primary:active {
+  background-color: var(--secondary) !important;
+  border: 1px solid var(--secondary) !important;
 }
 
 .header {
@@ -159,6 +165,42 @@ body {
 main {
   width: 60%;
   margin: 0 auto;
+}
+
+#post-detail {
+  width: 35%;
+  margin: 0 auto;
+}
+
+.title-detail {
+  margin-top: 3rem;
+  text-align: center;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-bottom: 2rem !important;
+}
+
+.p-details, .resumo-details {
+  text-align: justify;
+  font-family: "Exo 2", sans-serif;
+  font-weight: 300;
+  font-size: 1.1rem !important;
+  line-height: 1.8 !important;
+}
+
+.subtitle-details, .resumo-title {
+  font-family: "Exo 2", sans-serif;
+  font-weight: 400;
+  font-size: 1.4rem !important;
+  margin-top: 4rem !important;
+  margin-bottom: 2rem !important;
+}
+
+.div-img-details {
+  text-align: center;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
 }
 
 @media (max-width: 991.98px) {

@@ -72,7 +72,8 @@ async function fetchPrismicData() {
       const description = item.data.description[0].text || "Sem descrição";
       const imageUrl =
         item.data.image_title[0].text || "https://via.placeholder.com/286x180";
-      const link = item.link || "#";
+      const uid = item.uid; // Add this line to get the uid
+      const link = `details.html?id=${uid}`; // Create the link with uid
 
       const card = document.createElement("div");
       card.className = "card";
@@ -86,7 +87,7 @@ async function fetchPrismicData() {
                       <h5 class="card-title">${title}</h5>
                       <hr>
                       <p class="card-text">${description}</p>
-                      <a href="${link}" class="btn btn-primary" target="_blank">Read More</a>
+                      <a href="${link}" class="btn btn-primary">Read More</a>
                     </div>
                   `;
 
@@ -98,3 +99,56 @@ async function fetchPrismicData() {
 }
 
 fetchPrismicData();
+
+// carregar detalhes do post na página details.html
+const params = new URLSearchParams(window.location.search);
+const uid = params.get("id");
+
+if (!uid) {
+  document.getElementById("post-detail").innerHTML =
+    "<p class='text-danger'>Erro: Nenhum post encontrado.</p>";
+} else {
+  fetch(`/api/prismic?uid=${uid}`)
+    .then((res) => res.json())
+    .then((data) => renderPostDetail(data))
+    .catch((err) => {
+      console.error("Erro ao carregar detalhe:", err);
+      document.getElementById("post-detail").innerHTML =
+        "<p class='text-danger'>Erro ao carregar post.</p>";
+    });
+}
+
+function renderPostDetail(post) {
+  const section_div = document.getElementById("section");
+  const title = post.data.title_details?.[0]?.text || "Sem título";
+  const description =
+    post.data.title_details_text?.[0]?.text || "Sem descrição";
+  const title_resumo = post.data.title_resumo?.[0]?.text || "Sem resumo";
+  const text_resumo =
+    post.data.text_resumo?.[0]?.text || "Sem detalhes do resumo";
+  const sections = post.data.section || [];
+
+  document.getElementsByClassName("title-detail")[0].textContent = title;
+  document.getElementsByClassName("p-details")[0].textContent = description;
+
+  let sectionsHTML = "";
+  sections.forEach((section) => {
+    if (section.status_section) {
+      console.log(section);
+      sectionsHTML += `
+        <h4 class="subtitle-details">${
+          section.title_section?.[0]?.text || ""
+        }</h4>
+        <p class="p-details">${section.details_section?.[0]?.text || ""}</p>
+        <div class="div-img-details">
+          <img src="${section.img_section?.[0]?.text || ""}" width=600; alt="">
+        </div>
+      `;
+    }
+  });
+
+  section_div.innerHTML += sectionsHTML;
+
+  document.getElementsByClassName("resumo-title")[0].textContent = title_resumo;
+  document.getElementsByClassName("resumo-details")[0].textContent = text_resumo;
+}
