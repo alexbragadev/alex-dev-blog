@@ -63,35 +63,39 @@ async function fetchPrismicData() {
   try {
     const response = await fetch("/api/prismic");
     const data = await response.json();
+    let contador = 0;
 
     const container = document.getElementById("cards-container");
 
     data.forEach((item) => {
-      // Substitua os campos abaixo pelos nomes reais do seu JSON
-      const title = item.data.title[0].text || "Título padrão";
-      const description = item.data.description[0].text || "Sem descrição";
-      const imageUrl =
-        item.data.image_title[0].text || "https://via.placeholder.com/286x180";
-      const uid = item.uid; // Add this line to get the uid
-      const link = `details.html?id=${uid}`; // Create the link with uid
+      if (contador <= 5) {
+        // Substitua os campos abaixo pelos nomes reais do seu JSON
+        const title = item.data.title[0].text || "Título padrão";
+        const description = item.data.description[0].text || "Sem descrição";
+        const imageUrl =
+          item.data.image_title[0].text || "https://via.placeholder.com/286x180";
+        const uid = item.uid; // Add this line to get the uid
+        const link = `details.html?id=${uid}`; // Create the link with uid
 
-      const card = document.createElement("div");
-      card.className = "card";
-      card.style.width = "30%";
+        const card = document.createElement("div");
+        card.className = "card";
+        card.style.width = "30%";
 
-      card.innerHTML = `
-                    <div class="card-img-wrapper">
-                      <img src="${imageUrl}" class="card-img-top" alt="...">
-                    </div>
-                    <div class="card-body">
-                      <h5 class="card-title">${title}</h5>
-                      <hr>
-                      <p class="card-text">${description}</p>
-                      <a href="${link}" class="btn btn-primary">Read More</a>
-                    </div>
-                  `;
+        card.innerHTML = `
+                      <div class="card-img-wrapper">
+                        <img src="${imageUrl}" class="card-img-top" alt="...">
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title">${title}</h5>
+                        <hr>
+                        <p class="card-text">${description}</p>
+                        <a href="${link}" class="btn btn-primary">Read More</a>
+                      </div>
+                    `;
 
-      container.appendChild(card);
+        container.appendChild(card);
+    }
+    contador+=1;
     });
   } catch (err) {
     console.error("Erro ao carregar dados do Prismic:", err);
@@ -106,7 +110,7 @@ const uid = params.get("id");
 
 if (!uid) {
   document.getElementById("post-detail").innerHTML =
-    "<p class='text-danger'>Erro: Nenhum post encontrado.</p>";
+    "<p class='text-warning'>Nenhum post encontrado.</p>";
 } else {
   fetch(`/api/prismic?uid=${uid}`)
     .then((res) => res.json())
@@ -141,7 +145,7 @@ function renderPostDetail(post) {
         }</h4>
         <p class="p-details">${section.details_section?.[0]?.text || ""}</p>
         <div class="div-img-details">
-          <img src="${section.img_section?.[0]?.text || ""}" width=600; alt="">
+          <img src="${section.img_section?.[0]?.text || ""}" alt="">
         </div>
       `;
     }
