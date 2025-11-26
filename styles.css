@@ -18,12 +18,12 @@ body {
   font-weight: 400;
 }
 
-.card-body .btn-primary {
-  background-color: var(--primary);
-  border: 1px solid var(--primary);
+.btn-primary {
+  background-color: var(--primary) !important;
+  border: 1px solid var(--primary) !important;
 }
 
-.card-body .btn-primary:hover, .btn-primary:active {
+.btn-primary:hover, .btn-primary:active {
   background-color: var(--secondary) !important;
   border: 1px solid var(--secondary) !important;
 }
@@ -230,7 +230,38 @@ main {
 }
 
 .footer {
-  background-color: var(--black1);
+  background-color: var(--grey1);
+}
+
+.social-icons span {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1rem;
+  color: var(--black1);
+}
+
+.social-icons .social-icon, span {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.5rem;
+  color: var(--black1);
+  cursor: pointer;
+}
+
+.copyright {
+  margin-bottom: 2rem;
+}
+
+.copyright, #footer-email, #footer-message, .label-form {
+  font-family: "Quicksand", sans-serif;
+  font-size: 0.9rem;
+
+} 
+
+.btn-enviar {
+  width: 100%;
+}
+
+.footer-container-blog {
+  width: 60%;
 }
 
 @media (max-width: 991.98px) {
@@ -245,5 +276,10 @@ main {
 
   .card {
     width: 20rem !important;
+  }
+
+  .footer-container-blog {
+    width: 100%;     
+    max-width: 100%;
   }
 }

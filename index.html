@@ -46,21 +46,63 @@
     <div class="row">
       <div class="col">
         <main>
-        <div id="cards-container" class="d-flex flex-wrap justify-content-around"></div>
-        <div class="more-posts d-flex flex-wrap justify-content-end">
-          <p>
-            <a href="posts.html">More posts <i class="bi bi-chevron-double-right"></i></a>
-          </p>
-        </div>
+          <div id="cards-container" class="d-flex flex-wrap justify-content-around"></div>
+          <div class="more-posts d-flex flex-wrap justify-content-end">
+            <p>
+              <a href="posts.html">More posts <i class="bi bi-chevron-double-right"></i></a>
+            </p>
+          </div>
         </main>
-        <footer id="footer" class="footer">
-          instagram | youtube
-          email () texto () enviar 
-          © 2025 Fromcode
-        </footer>
       </div>
     </div>
   </div>
+  
+<footer class="footer mt-5">
+  <div class="container footer-container-blog">
+    <div class="row align-items-start g-5">
+
+      <!-- Coluna Esquerda -->
+      <div class="col-12 col-md-8 d-flex flex-column">
+        <div class="footer-left d-flex align-items-center gap-3">
+          <div class="social-icons d-flex align-items-center">
+            <i class="bi bi-instagram social-icon"></i>
+            <span class="ms-2">Instagram</span>
+            <span class="mx-2">|</span>
+            <i class="bi bi-youtube social-icon"></i>
+            <span class="ms-2">Youtube</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna Direita -->
+      <div class="col-12 col-md-4">
+        <div class="footer-form mt-3 mt-md-0">
+          <form class="d-flex flex-column">
+            <p class="label-form">Suggestions</p>
+
+            <input type="email" placeholder="Your email" class="form-control mb-2" required>
+            <textarea rows="5" placeholder="Text..." class="form-control mb-2" required></textarea>
+
+            <div class="d-flex justify-content-center">
+              <button class="btn btn-primary btn-enviar">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COPYRIGHT EMBAIXO DO FOOTER INTEIRO -->
+    <div class="row">
+      <div class="col-12">
+        <div class="copyright text-muted text-start">
+          © 2025 Fromcode
+        </div>
+      </div>
+    </div>
+
+  </div>
+</footer>
 
   <script src="public/js/bundle.js"></script>
 </body>
