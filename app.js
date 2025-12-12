@@ -82,7 +82,9 @@ async function fetchPrismicData() {
         card.style.width = "30%";
 
         card.innerHTML = `
+                    <a href="${link}" class="card-link">
                       <div class="card-img-wrapper">
+                        
                         <img src="${imageUrl}" class="card-img-top" alt="...">
                       </div>
                       <div class="card-body">
@@ -90,7 +92,9 @@ async function fetchPrismicData() {
                         <hr>
                         <p class="card-text">${description}</p>
                         <a href="${link}" class="btn btn-primary">Read More</a>
+                       
                       </div>
+                    </a>
                     `;
 
         container.appendChild(card);
